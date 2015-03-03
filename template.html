@@ -15,17 +15,15 @@
                     class="glyphicon glyphicon-book"></i> Community Help</a>
         </div>
 
-        <h1 id="step1">Draw the outline of the main object shown in the picture</h1>
-
-        <button id="btn-save" class="btn btn-success btn-answer" value='save'><i class="icon icon-white icon-save"></i>
-            Save the transcription
-        </button>
 
         <div class="col-md-8"><!-- Start of Photo DIV (column) -->
             <div id="map" class="img-polaroid"></div>
         </div>
         <!-- End of Photo DIV (columnt) -->
-        <div class="span4"><!-- Start of Question and Submission DIV (column) -->
+        <div class="col-md-4"><!-- Start of Question and Submission DIV (column) -->
+
+            <button id="btn-save" class="btn btn-success btn-answer" value='save'><i
+                    class="icon icon-white icon-save"></i> Save the transcription</button>
             <!-- Feedback items for the user -->
             <p>You are working now on task: <span id="task-id" class="label label-warning">#</span></p>
 
@@ -208,6 +206,7 @@
 
 
 
+
 </script>
 <script>
 pybossa.taskLoaded(function(task, deferred) {
@@ -250,6 +249,7 @@ var map = new ol.Map({
             deferred.resolve(task);
         }
 });
+
 
 
 </script>
@@ -363,6 +363,7 @@ $(window).off('.affix');
 $("#imgHolder")
     .removeClass("affix affix-top affix-bottom")
     .removeData("bs.affix");
+
 
 
 </script>
