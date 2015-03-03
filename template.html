@@ -15,11 +15,11 @@
     </div>
 
     <div class="row">
-        <div class="col-md-7"><!-- Start of Photo DIV (column) -->
+        <div class="col-md-6"><!-- Start of Photo DIV (column) -->
             <div id="map"></div>
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-6">
             <h4>Transcribe the catalogue into this table</h4>
             <div id="wgsTranscribe" class="handsontable"></div>
 
@@ -292,9 +292,9 @@ $(document).ready(function () {
     autoWrapRow: true,
     autoWrapCol: true,
     autoColumnSize: true,
-    colHeaders: ['ID', 'Date', 'Description', 'Length', 'Width', 'Lbs.', 'Oz.'],
+    colHeaders: ['ID', 'Date', 'Description', 'Length', 'Width', 'Lbs', 'Oz'],
     contextMenu: true,
-    colWidths: [50, 75, 150, 50, 50, 50, 50, 50]
+    colWidths: [50, 75, 150, 50, 50, 50, 50]
     };
     $("#wgsTranscribe").handsontable(config);
 });
