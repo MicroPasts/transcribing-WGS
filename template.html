@@ -205,18 +205,7 @@
     showStep('next');
     $("#modal").modal('show');
 
-    var data = [[]];
 
-  var container = document.getElementById('wgsTranscribe');
-  var hot = new Handsontable(container,
-  {
-    data: data,
-    minRows: 10,
-    minCols: 7,
-    minSpareRows: 1,
-    colHeaders: true,
-    contextMenu: true
-  });
 
 </script>
 <script>
@@ -274,6 +263,19 @@ console.log(task.info);
     {
       setTimeout( function() { map.updateSize();}, 200);
     }
+
+     var data = [[]];
+
+  var container = document.getElementById('wgsTranscribe');
+  var hot = new Handsontable(container,
+  {
+    data: data,
+    minRows: 10,
+    minCols: 7,
+    minSpareRows: 1,
+    colHeaders: true,
+    contextMenu: true
+  });
 
     }  else {
         deferred.resolve(task);
