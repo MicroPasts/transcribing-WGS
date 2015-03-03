@@ -18,65 +18,66 @@
         <h1 id="step1">Draw the outline of the main object shown in the picture</h1>
 
         <button id="btn-save" class="btn btn-success btn-answer" value='save'><i class="icon icon-white icon-save"></i>
-            Save the drawings
+            Save the transcription
         </button>
+
+        <div class="col-md-8"><!-- Start of Photo DIV (column) -->
+            <div id="map" class="img-polaroid"></div>
+        </div>
+        <!-- End of Photo DIV (columnt) -->
+        <div class="span4"><!-- Start of Question and Submission DIV (column) -->
+            <!-- Feedback items for the user -->
+            <p>You are working now on task: <span id="task-id" class="label label-warning">#</span></p>
+
+            <p>You have completed: <span id="done" class="label label-info"></span> tasks from
+                <!-- Progress bar for the user -->
+                <span id="total" class="label label-inverse"></span></p>
+
+            <div class="progress progress-striped">
+                <div id="progress" class="progress-bar" role="progressbar" rel="tooltip" title="#" class="bar"
+                     style="width: 0%;"></div>
+            </div>
+
+            <div id="answer"> <!-- Start DIV for the submission buttons -->
+            </div>
+            <!-- End of DIV for the submission buttons -->
+        </div>
     </div>
-</div>
-</div>
 
-<div class="row">
-    <!-- Success and Error Messages for the user -->
-    <div class="col-md-6 col-md-offset-2" style="height:50px">
-        <div id="success" class="alert alert-success" style="display:none;">
-            <a class="close">×</a>
-            <strong>Well done!</strong> Your answer has been saved
-        </div>
-        <div id="loading" class="alert alert-info" style="display:none;">
-            <a class="close">X</a>
-            Loading next task...
-        </div>
-        <div id="taskcompleted" class="alert alert-info" style="display:none;">
-            <strong>The task has been completed!</strong> Thanks a lot!
-        </div>
-        <div id="finish" class="alert alert-success" style="display:none;">
-            <strong>Congratulations!</strong> You have participated in all available tasks!
-            <br/>
+    <div class="row">
+        <!-- Success and Error Messages for the user -->
+        <div class="col-md-6 col-md-offset-2" style="height:50px">
+            <div id="success" class="alert alert-success" style="display:none;">
+                <a class="close">×</a>
+                <strong>Well done!</strong> Your answer has been saved
+            </div>
+            <div id="loading" class="alert alert-info" style="display:none;">
+                <a class="close">X</a>
+                Loading next task...
+            </div>
+            <div id="taskcompleted" class="alert alert-info" style="display:none;">
+                <strong>The task has been completed!</strong> Thanks a lot!
+            </div>
+            <div id="finish" class="alert alert-success" style="display:none;">
+                <strong>Congratulations!</strong> You have participated in all available tasks!
+                <br/>
 
-            <div class="alert-actions">
-                <a class="btn small" href="/">Go back</a>
-                <a class="btn small" href="/app">or, Check other applications</a>
+                <div class="alert-actions">
+                    <a class="btn small" href="/">Go back</a>
+                    <a class="btn small" href="/app">or, Check other applications</a>
+                </div>
+            </div>
+            <div id="error" class="alert alert-error" style="display:none;">
+                <a class="close">X</a>
+                <strong>Error!</strong> Something went wrong, please contact <a href="mailto:info@micropasts.org">MicroPasts
+                team</a>
             </div>
         </div>
-        <div id="error" class="alert alert-error" style="display:none;">
-            <a class="close">X</a>
-            <strong>Error!</strong> Something went wrong, please contact <a href="mailto:info@micropasts.org">MicroPasts
-            team</a>
-        </div>
+        <!-- End Success and Error Messages for the user -->
     </div>
-    <!-- End Success and Error Messages for the user -->
-</div> <!-- End of Row -->
+    <!-- End of Row -->
 
-<div class="row skeleton"> <!-- Start Skeleton Row-->
-    <div class="col-md-8"><!-- Start of Photo DIV (column) -->
-        <div id="map" class="img-polaroid"></div>
-    </div>
-    <!-- End of Photo DIV (columnt) -->
-    <div class="span4"><!-- Start of Question and Submission DIV (column) -->
-        <!-- Feedback items for the user -->
-        <p>You are working now on task: <span id="task-id" class="label label-warning">#</span></p>
-
-        <p>You have completed: <span id="done" class="label label-info"></span> tasks from
-            <!-- Progress bar for the user -->
-            <span id="total" class="label label-inverse"></span></p>
-
-        <div class="progress progress-striped">
-            <div id="progress" class="progress-bar" role="progressbar" rel="tooltip" title="#" class="bar"
-                 style="width: 0%;"></div>
-        </div>
-
-        <div id="answer"> <!-- Start DIV for the submission buttons -->
-        </div>
-        <!-- End of DIV for the submission buttons -->
+    <div class="row skeleton"> <!-- Start Skeleton Row-->
 
 
     </div>
@@ -206,6 +207,7 @@
     $("#modal").modal('show');
 
 
+
 </script>
 <script>
 pybossa.taskLoaded(function(task, deferred) {
@@ -248,6 +250,7 @@ var map = new ol.Map({
             deferred.resolve(task);
         }
 });
+
 
 </script>
 
@@ -360,6 +363,7 @@ $(window).off('.affix');
 $("#imgHolder")
     .removeClass("affix affix-top affix-bottom")
     .removeData("bs.affix");
+
 
 </script>
 
