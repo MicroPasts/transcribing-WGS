@@ -275,14 +275,14 @@ console.log(task.info);
 
 <script>
 $(document).ready(function () {
-    var data = [['Test',' ',' ',' ',' ',' ']];
+    var data = [[]];
     var config = {
     data: data,
     minRows: 10,
     minCols: 6,
     minSpareRows: 1,
     autoWrapRow: true,
-    colHeaders: ['Entry number', 'Description', 'Length', 'Width', 'Weight lbs', 'Weight oz'],
+    colHeaders: ['Entry number', 'Date', 'Description', 'Length', 'Width', 'Weight lbs', 'Weight oz'],
     contextMenu: true
     };
     $("#wgsTranscribe").handsontable(config);
