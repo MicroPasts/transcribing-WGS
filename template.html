@@ -8,25 +8,145 @@
 <script src="/static/js/vendor/jquery.serializeJSON.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js" type="text/javascript"></script>
 <script src="/static/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<style>
+    #map {
+    background-color: black;
+    height: 500px;
+    }
+    #map:-moz-full-screen {
+    height: 100%;
+    }
+    #map:-webkit-full-screen {
+    height: 100%;
+    }
+    #map:-ms-fullscreen {
+    height: 100%;
+    }
+    #map:full-screen {
+    height: 100%;
+    }
+    .ol-rotate {
+    top: 3em;
+    }
+    #wgsTranscribe {
+    min-width: 500px;
+    }
+</style>
+
+<div id="survey" class="modal fade" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Do you want to help us further?</h4>
+      </div>
+      <div class="modal-body">
+          <p>
+              Thank you for contributing one task for the project. 
+              We are interested in knowing how you found out about us.
+          </p>
+          <p>
+              Could you please answer two questions in a short survey?
+          </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Skip</button>
+        <a class="btn btn-large btn-success" href="https://docs.google.com/forms/d/1Foe1CCfd4K_ZmtX2W8MDsoSjjDi5zd5DLgG7yRVn2HQ/viewform?embedded=true">Of course! Take me to the survey!</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div id="survey25" class="modal fade" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">
+            Congratulations! You have completed 25 tasks!
+        </h4>
+      </div>
+      <div class="modal-body">
+          <p>
+              Thank you for contributing 25 tasks for the project. Now that you 
+              have been using MicroPasts for a while, we would like to know how 
+              you found it.
+          </p>
+          <p>
+              Could you please answer a few questions in a short survey?
+          </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Skip</button>
+        <a class="btn btn-large btn-success" href="https://docs.google.com/forms/d/1WTVapZ2Qdq0AIRazG-onDrVYDtb9xAnid7LwLrR3Uqw/viewform?embedded=true">Of course! Take me to the survey!</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div style="display:none;margin-top:15px; height:500px;" id="oldbrowser" class="row">
+    <!-- Success and Error Messages for the user -->
+    <div  class="col-md-8 col-md-offset-1 alert alert-info">
+        <h2>
+            Browser problems!
+        </h2>
+        <p>
+            Sorry, but your browser does not support the current application. 
+            If you want to contribute, please, upgrade to a modern web browser 
+            like the open source and free alternative 
+            <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a> or 
+            <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a>.
+        </p>
+    </div>
+</div> 
+<!-- End of Row -->
+
+<div style="margin-top:15px;">
+    <div id="success" class="alert alert-success" style="display:none;">
+        <strong>Well done!</strong> You have successfully submitted your transcription. Here is another to try if you wish!
+    </div>
+    <div id="loading" class="alert alert-info" style="display:none;">
+        <img src="/static/img/loading.gif">Loading next task...
+    </div>
+    <div id="taskcompleted" class="alert alert-info" style="display:none;">
+        <strong>The task has been completed!</strong> Thanks a lot!
+    </div>
+    <div id="finish" class="alert alert-success" style="display:none;">
+        <h2>
+            Congratulations!
+        </h2> 
+        <p>
+            You have participated in <strong>all</strong> available tasks! Thank you for your interest and help.
+        </p>
+        <br/>
+        <img src="https://crowdfunded.micropasts.org/assets/logo-head.png" width="200" height="200"/>
+        <div class="alert-actions">
+            <a class="btn-default btn" href="/">Go back</a>
+            <a class="btn-default btn" href="/app">or, Check other applications</a>
+        </div>
+    </div>
+
+    <div id="error" class="alert alert-error" style="display:none;">
+        <a class="close">X.</a>
+        <strong>Error!</strong> Something went wrong, please contact the site 
+        administrators via the forum, Twitter, email or our Facebook page.
+    </div>
+</div> <!-- End Success and Error Messages for the user -->
+
 
 <!--
-    Task DOM for loading the S3 Images
+    Task DOM for loading the Flickr Images
     It uses the class="skeleton" to identify the elements that belong to the
     task.
 -->
-<div class="row skeleton">
 
-    <div class="btn-group pull-right">
-        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><i
-                class="glyphicon glyphicon-eye-open"></i> Tutorial
-        </button>
-        <a class="btn btn-info btn-sm" id="imgLink" target="_blank" data-toggle="tooltip" data-placement="top"
-           title="Opens in a new window" href="http://community.micropasts.org/category/crowdsourcing-support"><i
-                class="glyphicon glyphicon-book"></i> Community Help</a>
-    </div>
+<!-- Start Skeleton Row-->
+<div class="row skeleton"> 
 
-    <div class="row skeleton">
-        <div class="col-md-6"><!-- Start of Photo DIV (column) -->
+        <h1 id="start">Please transcribe this page</h1>
+      <div class="col-md-6"><!-- Start of Photo DIV (column) -->
             <div id="map"></div>
         </div>
 
@@ -38,162 +158,131 @@
                 <label class="control-label" for="comments">Your Comments or any other data</label>
                 <textarea class="form-control" rows="5" id="comments" name="comments" placeholder="Add any comments you may have about the photo or your experience with this task."></textarea>
              </div>
-        <p>You are working now on task: <span id="task-id" class="label label-warning">#</span></p>
+</div>
 
-        <p>You have completed: <span id="done" class="label label-info"></span> tasks from
-            <!-- Progress bar for the user -->
-            <span id="total" class="label label-inverse"></span></p>
-
-        <div class="progress progress-striped">
-            <div id="progress" class="progress-bar" role="progressbar" rel="tooltip" title="#" class="bar" style="width: 0%;"></div>
-        </div>
+<div class="row skeleton">
 
 
-        </div>
-    </div>
-    <div class="col-md-12">
-        <!-- Feedback items for the user -->
-        <div id="answer"> <!-- Start DIV for the submission buttons -->
-            <button class="btn btn-submit" style="margin-top:5px;">Submit transcribed document</button>
-        </div>
-        <!-- End of DIV for the submission buttons -->
-    </div>
-
-    <div class="row">
-        <!-- Success and Error Messages for the user -->
-        <div class="col-md-6 col-md-offset-2" style="height:50px">
-            <div id="success" class="alert alert-success" style="display:none;">
-                <a class="close">×</a>
-                <strong>Well done!</strong> Your answer has been saved
-            </div>
-            <div id="loading" class="alert alert-info" style="display:none;">
-                <a class="close">X</a>
-                Loading next task...
-            </div>
-            <div id="taskcompleted" class="alert alert-info" style="display:none;">
-                <strong>The task has been completed!</strong> Thanks a lot!
-            </div>
-            <div id="finish" class="alert alert-success" style="display:none;">
-                <strong>Congratulations!</strong> You have participated in all available tasks!
-                <br/>
-
-                <div class="alert-actions">
-                    <a class="btn small" href="/">Go back</a>
-                    <a class="btn small" href="/app">or, Check other applications</a>
-                </div>
-            </div>
-            <div id="error" class="alert alert-error" style="display:none;">
-                <a class="close">X</a>
-                <strong>Error!</strong> Something went wrong, please contact <a href="mailto:info@micropasts.org">MicroPasts
-                team</a>
-            </div>
-        </div>
-        <!-- End Success and Error Messages for the user -->
-    </div>
-    <!-- End of Row -->
-
-    <!-- End of Question and Submission DIV (column) -->
 
 </div><!-- End of Skeleton Row -->
 
-
-<div id="survey" class="modal fade" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Do you want to help us?</h4>
-            </div>
-            <div class="modal-body">
-                Thanks for contributing one task for the project. We are interested in knowing how you found out about
-                us.
-                <strong>Could you please answer two questions in a short survey?</strong>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Skip</button>
-                <a class="btn btn-large btn-success"
-                   href="https://docs.google.com/forms/d/1Kgw8cvcufm-77PC2t_PL_b4y1_Tb9wJseimmb3cQIn4/viewform?embedded=true">Of
-                    course!
-                    Take me to the survey!</a>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<div id="survey25" class="modal fade" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Congrats for completing 25 tasks!</h4>
-            </div>
-            <div class="modal-body">
-                Thanks for contributing 25 tasks for the project. Now that you have been using MicroPasts for a while,
-                we would like to know how you found it. <strong>Could you please answer a few questions in a short
-                survey?</strong>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Skip</button>
-                <a class="btn btn-large btn-success"
-                   href="https://docs.google.com/forms/d/1uczUGGYbrQ2FQfTtM8j4vfGr2qwcCMW6PLwzfvZZ6kI/viewform?embedded=true">Of
-                    course! Take me to the survey!</a>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 <!-- Modal start -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal header -->
-            <div class="modal-header">
-                <h3>Photo-masking tutorial for 3D modelling </h3>
+  <div class="modal-dialog">
+    <div class="modal-content">
+	<!-- Modal header --> 
+		<div class="modal-header">
+                <h3 class="lead">BM Bronze Age Index BAI-draw transcription tutorial</h3>
+            </div>
+	<!-- stepped modal body -->
+		<div id="0" class="modal-body" style="display:none">
+
+                <p>
+                    This application is very simple, but does require you to use your own judgement in reading hand-written documents. When you participate,
+                    the platform will load a scanned index card from the British Museum's Bronze Age catalogue
+                    (stored on the MicroPasts <a href="http://flickr.com">Flickr</a> stream).
+                    Once the image has been loaded, you will be asked to transcribe the contents of each
+                    card (if a card does not load, you can still click the "View on Flickr" button to see the contents). Most scanned images combine the written details from the one side of the
+                    index card and the line drawing of the object from the reverse side.
+                    An example of the front side of a card is shown below.
+                </p>
+
+                <img src="https://farm4.staticflickr.com/3700/13305081014_dc91f9d867_n.jpg" class="img-polaroid"
+                     alt="An example of one of the Bronze Age Index cards" width="229" height="320"/>
+
+                <p>
+                    Each index card contains similar information and we are asking you to enter this information
+                    into a set of pre-defined fields. In addition to the help provided by this tutorial, you will also
+                    find further hints inside the data entry boxes about where on the card the relevant information might be found
+                    (e.g. in the example card above, the necessary entry for the "Object Type" filed would be "Palstave" and the data entry box
+                    will hint that this information can be found "Top of card").
+                </p>
+
             </div>
 
-            <!-- Step 1 of the tutorial -->
-            <div id="0" class="modal-body" style="display:none">
-                <!-- Insert content for step 3 -->
-            </div>
+		<div id="1" class="modal-body" style="display:none">
+		     <p>
+                    During the transcription, you can always return to this tutorial via the "Help" button.
+                    Here are some further issues to watch out for:
+                    </p>
 
-            <!-- Step 2 of the tutorial -->
-            <div id="1" class="modal-body" style="display:none">
-                <!-- Insert content for step 2 -->
-            </div>
+		<ol>
+		
+                    <li>
+                    The "top right corner" field is not present on all cards, but if it exists, it is normally a typological code
+                    including a Latin numeral, following by an ordinary (Arabic) number, and finally a capital letter.
+                    This is often but not always written in pencil (and by the way, when the last letter is a G it often looks like a 9). The example below would be rendered "II1A":<br />
+                    <img src="http://farm6.staticflickr.com/5539/12233629423_e5f1f6ddcf_o.png" class="img-polaroid" alt="Top corner" width="227" height="65"/>
+                    </li>
+                    
+                    <li>
+                    When entering information in the fields, please respect the case of words as seen on the card.
+                    </li>
+                    
+                    <li>
+                    If there is a word or a portion of a word that you cannot read, please use the "[...]" notation. For example,
+                    using the example index card shown before, if you could not read the reference top left to "Sea-shore near Cooden Bay",
+                    you might render it as "Sea-shore near [...] Bay", although we suggest you do fill in the whole word in cases where
+                    you are fairly confident but not certain.
+                    </li>
 
-            <div id="2" class="modal-body" style="display:none">
-                <!-- Insert content for step 3 -->
-            </div>
+                    <li>
+                    If you see text that is stacked on more than one line or separated by a gap, but that otherwise should go
+                    into just one of our pre-specified boxes, then separate it by "[;]" (without any paragraph return/hitting the enter key). For example, on the
+                    index card we showed you before, "Mr Vidler" and "Pevensey" are
+                    both entries that should be entered in the the Collection box, so you could simply enter "Mr Vidler[;]Pevensey".
+                    </li>
 
-            <!-- End of stepped modal body -->
+                    <li>
+                    Measurements should be entered in millimetres or grammes, as the hints suggest, and only the number should be entered in the box
+                    (e.g. a length of 174mm should  be entered as 174). If the units are not in mm or grammes, please convert them to whole number grammes and mm, and place
+                    the converted values in the correct box. In such cases, please also make a note of the original in the Transcriber's Comments
+                    (e.g. a length written as "4.2 in" should be note verbatim in the Transcriber's Comments, but recorded as 107 in the Length box).
+                    </li>
 
-            <!-- Modal footer -->
-            <div class="modal-footer">
+                    <li>
+                    If there is additional information on the card that you do not feel fits in one of our pre-specified
+                    boxes, or if you have any further worries about how to transcribe the card, then please put these concerns in our
+                    "Transcriber's Comments" box at the bottom of the transcription page.
+                    </li>
+                    
+                </ol>
+
+
+		</div>
+
+		<div id="2" class="modal-body" style="display:none">
+			<p>
+	            	Sometimes you might notice that there is some variability in the style of the index cards and
+	            	occasionally you might get a card that looks quite different, such as the one below. In such cases, please try your best
+	            	to fill in the requisite fields and note in the Transcriber's Comments field that you found this difficult for that
+	            	particular card. As we continue drawer-by-drawer through the catalog, we will look to modify the
+	            	input fields in response to your suggestions.
+	            	</p>
+	            	<img src="https://farm4.staticflickr.com/3815/12674204253_2695e6293a_n.jpg" alt="variant card " width="230" height="320"/>
+		</div>
+		
+		<div id="3" class="modal-body" style="display:none">
+		<p>
+                To find out how the project is progressing, suggest changes to this application or
+                propose new research ideas based what you have transcribed, please have a look at
+                our <a href="http://community.micropasts.org" title="Community forum">community forum</a>.
+                </p>
+		</div>
+
+	<!-- End of stepped modal body -->
+
+	<!-- Modal footer -->
+	<div class="modal-footer">
                 <a id="prevBtn" href="#" onclick="showStep('prev')" class="btn btn-default">Previous</a>
                 <a id="nextBtn" href="#" onclick="showStep('next')" class="btn btn-success">Next</a>
-                <button id="startContrib" data-dismiss="modal" class="btn btn-primary" style="display:none"/>
-                <i class="glyphicon glyphicon-thumbs-up"></i> Let's start!</a>
+                <button id="startContrib" data-dismiss="modal" class="btn btn-primary" style="display:none"><i class="glyphicon glyphicon-thumbs-up"></i> Let's start!</a>
             </div>
-        </div>
-    </div>
+	</div>
+  </div>
 </div>
-
-
-
-<!-- Client side scripts -->
+<!-- Modal end --> 
 <script>
-// Quick fix for IE8
-Modernizr.load({
-  test: window.JSON,
-  nope: '/static/js/vendor/json2.min.js'
-});
-</script>
-
-<script type="text/javascript">
     var step = -1;
     function showStep(action) {
         $("#" + step).hide();
@@ -210,7 +299,7 @@ Modernizr.load({
             $("#prevBtn").show();
         }
 
-        if (step == 2) {
+        if (step == 3 ) {
             $("#nextBtn").hide();
             $("#startContrib").show();
         }
@@ -220,6 +309,7 @@ Modernizr.load({
     showStep('next');
     $("#modal").modal('show');
 </script>
+
 
 <script>
 $(document).ready(function () {
@@ -241,34 +331,43 @@ $(document).ready(function () {
 
 </script>
 
+<!-- The modernizer script --> 
+
+<script>
+// Quick fix for IE8
+Modernizr.load({
+  test: window.JSON,
+  nope: '/static/js/vendor/json2.min.js'
+});
+</script>
+<!-- The main pybossa functions --> 
 <script>
 function loadUserProgress() {
-        pybossa.userProgress('wgs').done(function(data){
-
-            console.log("Total answers done for user: " + data.done);
-
-            if ((data.done == 1) && ($.cookie('surveyWGS') == undefined)){
-               $("#survey").modal('show');
-               $.cookie('surveyWGS', 'shown', { path: '/'});
-            }
-            if ((data.done >= 25) && ($.cookie('survey25WGS') == undefined)){
-                $("#survey25").modal('show');
-                $.cookie('survey25WGS', 'shown', { path: '/'});
-            }
-            var pct = Math.round((data.done*100)/data.total);
-            $("#progress").css("width", pct.toString() +"%");
-            $("#progress").attr("title", pct.toString() + "% completed!");
-            $("#progress").tooltip({'placement': 'left'});
-            $("#total").text(data.total);
-            $("#done").text(data.done);
-        });
-    }
+    pybossa.userProgress('wgs').done(function(data){
+        console.log(data);
+        console.log("Total answers done for user: " + data.done);
+        if ((data.done == 1) && ($.cookie('surveyBAI-draw') === undefined)){
+           $("#survey").modal('show');
+           $.cookie('surveyBAI-draw', 'shown', { path: '/'});
+        }
+        if ((data.done == 25) && ($.cookie('survey25BAI-draw') === undefined)){
+           $("#survey25").modal('show');
+           $.cookie('survey25BAI-draw', 'shown', { path: '/'});
+        }
+        var pct = Math.round((data.done*100)/data.total);
+        $("#progress").css("width", pct.toString() +"%");
+        $("#progress").attr("title", pct.toString() + "% completed!");
+        $("#progress").tooltip({'placement': 'left'});
+        $("#total").text(data.total);
+        $("#done").text(data.done);
+    });
+}
 </script>
 
 <script>
 pybossa.taskLoaded(function(task, deferred) {
-
-    console.log('Url for image: ' + task.info.url_b);
+    if ( !$.isEmptyObject(task) ) {
+       console.log('Url for image: ' + task.info.url_b);
     if ( !$.isEmptyObject(task) ) {
 
         // Map views always need a projection.  Here we just want to map image
@@ -323,15 +422,15 @@ pybossa.taskLoaded(function(task, deferred) {
 
         map.addControl(zoomslider);
 
-    }  else {
-        deferred.resolve(task);
-    }
+        
+        }  else {
+            deferred.resolve(task);
+        }
+
 });
 </script>
-
 <script>
 pybossa.presentTask(function(task, deferred) {
-    console.log(task);
     if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
         $(':input','#transcription')
@@ -339,11 +438,35 @@ pybossa.presentTask(function(task, deferred) {
            .val('')
            .removeAttr('checked')
            .removeAttr('selected');
-
+      
+      	$("a#raw").attr("href", task.info.url_b);
+	$("a#flickr").attr("href", task.info.link + '/sizes/k/');
+	$("a#down").attr("download", task.id);
+	$("a#down").attr("href", task.info.url_b );
+        $(".fancybox").fancybox();
+        $('#imgLink').tooltip();
+        $("[rel=tooltip]").tooltip();
+        $("#searchingTip").hide();
         $("#question").html(task.info.question);
         $('#task-id').html(task.id);
         $("#map_" + task.id).show();
         $("#img_" + task.id).show();
+
+        // Clean
+        $('select[name=dateDiscoveryYear]').html('').append($('<option/>').val('None').html('Year'));
+        for (i = 1700; i < 2000; i++) {
+            $('select[name=dateDiscoveryYear]').append($('<option />').val(i).html(i));
+        }
+
+        $('select[name=dateDiscoveryMonth]').html('').append($('<option/>').val('None').html('Month'));
+        for (i = 1; i <= 12; i++)  {
+            $('select[name=dateDiscoveryMonth]').append($('<option />').val(i).html(i));
+        }
+
+        $('select[name=dateDiscoveryDay]').html('').append($('<option/>').val('None').html('Day'));
+        for (i = 1; i <= 31; i++) {
+            $('select[name=dateDiscoveryDay]').append($('<option />').val(i).html(i));
+        }
 
         $('.btn-answer').off('click').on('click', function(evt) {
             evt.preventDefault();
@@ -356,17 +479,44 @@ pybossa.presentTask(function(task, deferred) {
                 } else {
                     task.answer = $("#transcription").serializeJSON();
                     console.log(task.answer);
-                    console.log(task.answer);
+                   if($('#lon').val()) {
+                   var geojson = {
+                       "geometry": {
+                            "type": "Point",
+                            "coordinates": [
+                                        $('#lon').val(),
+                                        $('#lat').val()
+                                ]
+                        },
+                        "crs": {
+                          "type": "name",
+                          "properties": {
+                            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+                          }
+                        },
+                        "type": "Feature",
+                        "properties": {
 
+                        }
+                   };
+                   console.log(geojson);
+                    task.answer.geojson = geojson;
+                }
+                    task.answer.toSearch = task.answer.toSearch.replace(/\n/g,', ');
+                    task.answer.site = task.answer.site.replace(/\r\n/g,', ');
+                    console.log(task.answer);
+                    
                     pybossa.saveTask(task.id, task.answer).done(function() {
                         $("#map_" + task.id).hide();
+                        $("#img_" + task.id).hide();
+                        //$('#img_task_' + task.id).trigger('wheelzoom.reset');
                         $("html, body").animate({ scrollTop: 0 }, "slow");
                         $("#success").fadeIn(500).fadeOut(5500);
                         $("#loading").fadeIn(500).fadeOut(1000);
                         deferred.resolve();
                     });
                     $("#loading").fadeIn(500);
-
+                    
                 }
             } else {
                 console.log(answer);
@@ -382,6 +532,7 @@ pybossa.presentTask(function(task, deferred) {
         $("#finish").fadeIn(500);
     }
 });
+
 if(Modernizr.borderradius) {
     pybossa.run('wgs');
 }
@@ -389,29 +540,8 @@ else {
     $(".skeleton").hide();
     $("#oldbrowser").show();
 }
+$(window).off('.affix');
+$("#imgHolder")
+    .removeClass("affix affix-top affix-bottom")
+    .removeData("bs.affix");
 </script>
-
-<style>
-    #map {
-    background-color: black;
-    height: 500px;
-    }
-    #map:-moz-full-screen {
-    height: 100%;
-    }
-    #map:-webkit-full-screen {
-    height: 100%;
-    }
-    #map:-ms-fullscreen {
-    height: 100%;
-    }
-    #map:full-screen {
-    height: 100%;
-    }
-    .ol-rotate {
-    top: 3em;
-    }
-    #wgsTranscribe {
-    min-width: 500px;
-    }
-</style>
