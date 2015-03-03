@@ -223,6 +223,9 @@ console.log(task.info);
     });
 
     var map = new ol.Map({
+      controls: ol.control.defaults().extend([
+        new ol.control.FullScreen()
+      ]),
       layers: [
         new ol.layer.Image({
           source: new ol.source.ImageStatic({
@@ -243,7 +246,10 @@ console.log(task.info);
         center: ol.extent.getCenter(extent),
         zoom: 2
       })
+
     });
+      zoomslider = new ol.control.ZoomSlider();
+      map.addControl(zoomslider);
     window.onresize = function()
     {
       setTimeout( function() { map.updateSize();}, 200);
