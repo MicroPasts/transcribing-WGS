@@ -261,7 +261,7 @@ function loadUserProgress() {
 
 pybossa.taskLoaded(function(task, deferred) {
 
-    console.log('Url for image: ' + task.info);
+    console.log('Url for image: ' + task.info.url_b);
     if ( !$.isEmptyObject(task) ) {
 
         // Map views always need a projection.  Here we just want to map image
@@ -322,7 +322,7 @@ pybossa.taskLoaded(function(task, deferred) {
 });
 
 pybossa.presentTask(function(task, deferred) {
-   
+    console.log(task);
     if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
         $(':input','#transcription')
