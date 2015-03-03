@@ -4,42 +4,44 @@
     task.
 -->
 <div class="row skeleton">
+
+    <div class="btn-group pull-right">
+        <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><i
+                class="glyphicon glyphicon-eye-open"></i> Tutorial
+        </button>
+        <a class="btn btn-info btn-sm" id="imgLink" target="_blank" data-toggle="tooltip" data-placement="top"
+           title="Opens in a new window" href="http://community.micropasts.org/category/crowdsourcing-support"><i
+                class="glyphicon glyphicon-book"></i> Community Help</a>
+    </div>
+
+
+    <div class="col-md-12"><!-- Start of Photo DIV (column) -->
+        <div id="map" class="img-polaroid"></div>
+    </div>
+    <!-- End of Photo DIV (columnt) -->
+    <div class="col-md-12"><!-- Start of Question and Submission DIV (column) -->
+
+        <button id="btn-save" class="btn btn-success btn-answer" value='save'><i
+                class="icon icon-white icon-save"></i> Save the transcription
+        </button>
+    </div>
     <div class="col-md-12">
+        <!-- Feedback items for the user -->
 
-        <div class="btn-group pull-right">
-            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><i
-                    class="glyphicon glyphicon-eye-open"></i> Tutorial
-            </button>
-            <a class="btn btn-info btn-sm" id="imgLink" target="_blank" data-toggle="tooltip" data-placement="top"
-               title="Opens in a new window" href="http://community.micropasts.org/category/crowdsourcing-support"><i
-                    class="glyphicon glyphicon-book"></i> Community Help</a>
+        <p>You are working now on task: <span id="task-id" class="label label-warning">#</span></p>
+
+        <p>You have completed: <span id="done" class="label label-info"></span> tasks from
+            <!-- Progress bar for the user -->
+            <span id="total" class="label label-inverse"></span></p>
+
+        <div class="progress progress-striped">
+            <div id="progress" class="progress-bar" role="progressbar" rel="tooltip" title="#" class="bar"
+                 style="width: 0%;"></div>
         </div>
 
-
-        <div class="col-md-8"><!-- Start of Photo DIV (column) -->
-            <div id="map" class="img-polaroid"></div>
+        <div id="answer"> <!-- Start DIV for the submission buttons -->
         </div>
-        <!-- End of Photo DIV (columnt) -->
-        <div class="col-md-4"><!-- Start of Question and Submission DIV (column) -->
-
-            <button id="btn-save" class="btn btn-success btn-answer" value='save'><i
-                    class="icon icon-white icon-save"></i> Save the transcription</button>
-            <!-- Feedback items for the user -->
-            <p>You are working now on task: <span id="task-id" class="label label-warning">#</span></p>
-
-            <p>You have completed: <span id="done" class="label label-info"></span> tasks from
-                <!-- Progress bar for the user -->
-                <span id="total" class="label label-inverse"></span></p>
-
-            <div class="progress progress-striped">
-                <div id="progress" class="progress-bar" role="progressbar" rel="tooltip" title="#" class="bar"
-                     style="width: 0%;"></div>
-            </div>
-
-            <div id="answer"> <!-- Start DIV for the submission buttons -->
-            </div>
-            <!-- End of DIV for the submission buttons -->
-        </div>
+        <!-- End of DIV for the submission buttons -->
     </div>
 
     <div class="row">
@@ -75,10 +77,6 @@
     </div>
     <!-- End of Row -->
 
-    <div class="row skeleton"> <!-- Start Skeleton Row-->
-
-
-    </div>
     <!-- End of Question and Submission DIV (column) -->
 
 </div><!-- End of Skeleton Row -->
@@ -89,7 +87,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Hey there! Do you want to help us?</h4>
+                <h4 class="modal-title">Do you want to help us?</h4>
             </div>
             <div class="modal-body">
                 Thanks for contributing one task for the project. We are interested in knowing how you found out about
@@ -207,6 +205,7 @@
 
 
 
+
 </script>
 <script>
 pybossa.taskLoaded(function(task, deferred) {
@@ -249,6 +248,7 @@ var map = new ol.Map({
             deferred.resolve(task);
         }
 });
+
 
 
 
@@ -363,6 +363,7 @@ $(window).off('.affix');
 $("#imgHolder")
     .removeClass("affix affix-top affix-bottom")
     .removeData("bs.affix");
+
 
 
 
