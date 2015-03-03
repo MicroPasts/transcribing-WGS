@@ -310,10 +310,6 @@ pybossa.presentTask(function(task, deferred) {
            .removeAttr('checked')
            .removeAttr('selected');
 
-      	$("a#raw").attr("href", task.info.url_b);
-        $(".fancybox").fancybox();
-        $('#imgLink').tooltip();
-        $("[rel=tooltip]").tooltip();
         $("#question").html(task.info.question);
         $('#task-id').html(task.id);
         $("#map_" + task.id).show();
@@ -365,10 +361,6 @@ else {
     $(".skeleton").hide();
     $("#oldbrowser").show();
 }
-$(window).off('.affix');
-$("#imgHolder")
-    .removeClass("affix affix-top affix-bottom")
-    .removeData("bs.affix");
 </script>
 
 <style>
