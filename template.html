@@ -169,8 +169,7 @@
 
 
 <script src="https://code.jquery.com/ui/1.8.1/jquery-ui.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-handsontable/0.10.2/jquery.handsontable.min.js"
-        type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-handsontable/0.10.2/jquery.handsontable.full.min.jss" type="text/javascript"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.2.1/ol.css" type="text/css">
 <link rel="stylesheet" href="/static/vendor/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.2.1/ol.min.js" type="text/javascript"></script>
@@ -251,14 +250,19 @@ console.log(task.info);
       })
 
     });
+
     $('.ol-zoom-in, .ol-zoom-out').tooltip({
         placement: 'right'
     });
+
     $('.ol-rotate-reset, .ol-attribution button[title]').tooltip({
         placement: 'left'
     });
+
     zoomslider = new ol.control.ZoomSlider();
+
     map.addControl(zoomslider);
+
     window.onresize = function()
     {
       setTimeout( function() { map.updateSize();}, 200);
