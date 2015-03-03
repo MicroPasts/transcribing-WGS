@@ -206,20 +206,21 @@
 
 
 
+
 </script>
 <script>
 pybossa.taskLoaded(function(task, deferred) {
 console.log(task.info);
     if ( !$.isEmptyObject(task) ) {
-       // Map views always need a projection.  Here we just want to map image
-// coordinates directly to map coordinates, so we create a projection that uses
-// the image extent in pixels.
-var extent = [0, 0, 1024, 968];
-var projection = new ol.proj.Projection({
-  code: '',
-  units: 'pixels',
-  extent: extent
-});
+    // Map views always need a projection.  Here we just want to map image
+    // coordinates directly to map coordinates, so we create a projection that uses
+    // the image extent in pixels.
+    var extent = [0, 0, 4000, 6016];
+    var projection = new ol.proj.Projection({
+      code: '',
+      units: 'pixels',
+      extent: extent
+    });
 
 var map = new ol.Map({
   layers: [
@@ -243,11 +244,16 @@ var map = new ol.Map({
     zoom: 3
   })
 });
+window.onresize = function()
+{
+  setTimeout( function() { map.updateSize();}, 200);
+}
 
         }  else {
             deferred.resolve(task);
         }
 });
+
 
 
 
@@ -363,6 +369,7 @@ $(window).off('.affix');
 $("#imgHolder")
     .removeClass("affix affix-top affix-bottom")
     .removeData("bs.affix");
+
 
 
 
