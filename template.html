@@ -38,10 +38,14 @@
                  style="width: 0%;"></div>
         </div>
 
-    </div>
 
+        </div>
+    </div>
     <div class="col-md-12">
         <!-- Feedback items for the user -->
+
+
+
         <div id="answer"> <!-- Start DIV for the submission buttons -->
             <button class="btn btn-submit" style="margin-top:5px;">Submit transcribed document</button>
         </div>
@@ -209,8 +213,8 @@
     showStep('next');
     $("#modal").modal('show');
 </script>
-
 <script>
+
 function loadUserProgress() {
         pybossa.userProgress('wgs').done(function(data){
             console.log("Total answers done for user: " + data.done);
@@ -230,7 +234,6 @@ function loadUserProgress() {
             $("#done").text(data.done);
         });
     }
-
 
 pybossa.taskLoaded(function(task, deferred) {
 console.log(task.info);
@@ -332,6 +335,10 @@ pybossa.presentTask(function(task, deferred) {
            .removeAttr('checked')
            .removeAttr('selected');
 
+      	$("a#raw").attr("href", task.info.url_b);
+        $(".fancybox").fancybox();
+        $('#imgLink').tooltip();
+        $("[rel=tooltip]").tooltip();
         $("#question").html(task.info.question);
         $('#task-id').html(task.id);
         $("#map_" + task.id).show();
@@ -383,6 +390,10 @@ else {
     $(".skeleton").hide();
     $("#oldbrowser").show();
 }
+$(window).off('.affix');
+$("#imgHolder")
+    .removeClass("affix affix-top affix-bottom")
+    .removeData("bs.affix");
 </script>
 
 <style>
