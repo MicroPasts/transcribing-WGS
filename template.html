@@ -321,6 +321,7 @@ function loadUserProgress() {
     }
 
 pybossa.presentTask(function(task, deferred) {
+    console.log(task);
     if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
         $(':input','#transcription')
