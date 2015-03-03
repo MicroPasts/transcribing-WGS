@@ -205,22 +205,18 @@
     showStep('next');
     $("#modal").modal('show');
 
-    var container = document.getElementById('wgsTranscribe'), hot;
+    var data = [[]];
 
-    hot = new Handsontable(container, {
-    data: [],
-    dataSchema: {id: null, name: {first: null, last: null}, address: null},
-    startRows: 5,
-    startCols: 4,
-    colHeaders: ['ID', 'First Name', 'Last Name', 'Address'],
-    columns: [
-    {data: 'id'},
-    {data: 'name.first'},
-    {data: 'name.last'},
-    {data: 'address'}
-  ],
-  minSpareRows: 1
-});
+  var container = document.getElementById('wgsTranscribe');
+  var hot = new Handsontable(container,
+  {
+    data: data,
+    minRows: 10,
+    minCols: 7,
+    minSpareRows: 1,
+    colHeaders: true,
+    contextMenu: true
+  });
 
 </script>
 <script>
