@@ -240,7 +240,6 @@ console.log(task.info);
           })
         })
       ],
-      renderer: exampleNS.getRendererFromQueryString(),
       target: 'map',
       view: new ol.View({
         projection: projection,
@@ -338,5 +337,6 @@ $("#imgHolder")
 <style>
     #map {
         background-color: black;
+        max-height: 300px;
     }
 </style>
