@@ -331,6 +331,7 @@ pybossa.taskLoaded(function(task, deferred) {
 </script>
 
 <script>
+console.log(task);
 pybossa.presentTask(function(task, deferred) {
     console.log(task);
     if ( !$.isEmptyObject(task) ) {
