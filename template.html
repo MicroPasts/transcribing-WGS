@@ -286,7 +286,8 @@ $(document).ready(function () {
     autoWrapCol: true,
     autoColumnSize: true,
     colHeaders: ['Entry number', 'Date', 'Description', 'Length', 'Width', 'Weight lbs', 'Weight oz'],
-    contextMenu: true
+    contextMenu: true,
+    colWidths: [50, 75, 200, 50, 50, 50, 50]
     };
     $("#wgsTranscribe").handsontable(config);
 });
@@ -391,6 +392,5 @@ $("#imgHolder")
     top: 3em;
     }
     #wgsTranscribe {
-        max-width: 500px;
     }
 </style>
