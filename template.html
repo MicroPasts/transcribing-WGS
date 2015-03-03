@@ -243,7 +243,6 @@ $(document).ready(function () {
 </script>
 
 <script>
-
 function loadUserProgress() {
         pybossa.userProgress('wgs').done(function(data){
 
@@ -265,7 +264,9 @@ function loadUserProgress() {
             $("#done").text(data.done);
         });
     }
+</script>
 
+<script>
 pybossa.taskLoaded(function(task, deferred) {
 
     console.log('Url for image: ' + task.info.url_b);
@@ -327,7 +328,9 @@ pybossa.taskLoaded(function(task, deferred) {
         deferred.resolve(task);
     }
 });
+</script>
 
+<script>
 pybossa.presentTask(function(task, deferred) {
     console.log(task);
     if ( !$.isEmptyObject(task) ) {
