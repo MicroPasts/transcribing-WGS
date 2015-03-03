@@ -18,13 +18,6 @@
     <div class="col-md-12"><!-- Start of Photo DIV (column) -->
         <div id="map"></div>
     </div>
-    <!-- End of Photo DIV (columnt) -->
-    <div class="col-md-12"><!-- Start of Question and Submission DIV (column) -->
-
-        <button id="btn-save" class="btn btn-success btn-answer" value='save'><i
-                class="icon icon-white icon-save"></i> Save the transcription
-        </button>
-    </div>
 
     <div class="col-md-12">
         <form id="transcription" role="form">
@@ -34,6 +27,9 @@
                 <input class="form-control" type="text" name="objectType" placeholder="Top of card">
             </div>
         </form>
+        <button id="btn-save" class="btn btn-success btn-answer" value='save'><i
+                class="icon icon-white icon-save"></i> Save the transcription
+        </button>
     </div>
     <div class="col-md-12">
         <!-- Feedback items for the user -->
@@ -349,4 +345,19 @@ $("#imgHolder")
         background-color: black;
         max-height: 500px;
     }
+     .map:-moz-full-screen {
+        height: 100%;
+      }
+      .map:-webkit-full-screen {
+        height: 100%;
+      }
+      .map:-ms-fullscreen {
+        height: 100%;
+      }
+      .map:full-screen {
+        height: 100%;
+      }
+      .ol-rotate {
+        top: 3em;
+      }
 </style>
