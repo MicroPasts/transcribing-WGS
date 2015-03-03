@@ -57,7 +57,7 @@
 </div> <!-- End of Row -->
 
 <div class="row skeleton"> <!-- Start Skeleton Row-->
-    <div class="span8"><!-- Start of Photo DIV (column) -->
+    <div class="col-md-8"><!-- Start of Photo DIV (column) -->
         <div id="map" class="img-polaroid"></div>
     </div>
     <!-- End of Photo DIV (columnt) -->
@@ -209,7 +209,7 @@
 </script>
 <script>
 pybossa.taskLoaded(function(task, deferred) {
-console.log(task);
+console.log(task.info);
     if ( !$.isEmptyObject(task) ) {
        // Map views always need a projection.  Here we just want to map image
 // coordinates directly to map coordinates, so we create a projection that uses
