@@ -239,8 +239,9 @@ $(document).ready(function () {
 
 function loadUserProgress() {
         pybossa.userProgress('wgs').done(function(data){
-            console.log(data);
+
             console.log("Total answers done for user: " + data.done);
+
             if ((data.done == 1) && ($.cookie('surveyWGS') == undefined)){
                $("#survey").modal('show');
                $.cookie('surveyWGS', 'shown', { path: '/'});
@@ -260,60 +261,60 @@ function loadUserProgress() {
 
 pybossa.taskLoaded(function(task, deferred) {
 
-console.log(task.info);
+    console.log('Url for image: ' + task.info);
     if ( !$.isEmptyObject(task) ) {
 
-    // Map views always need a projection.  Here we just want to map image
-    // coordinates directly to map coordinates, so we create a projection that uses
-    // the image extent in pixels.
-    var extent = [0, 0, 4000, 6016];
-    var projection = new ol.proj.Projection({
-      code: '',
-      units: 'pixels',
-      extent: extent
-    });
+        // Map views always need a projection.  Here we just want to map image
+        // coordinates directly to map coordinates, so we create a projection that uses
+        // the image extent in pixels.
+        var extent = [0, 0, 4000, 6016];
+        var projection = new ol.proj.Projection({
+          code: '',
+          units: 'pixels',
+          extent: extent
+        });
 
-    var map = new ol.Map({
-      controls: ol.control.defaults().extend([
-        new ol.control.OverviewMap(),
-        new ol.control.FullScreen()
-      ]),
-      layers: [
-        new ol.layer.Image({
-          source: new ol.source.ImageStatic({
-            attributions: [
-              new ol.Attribution({
-                html: '&copy; The Trustees of the British Museum'
+        var map = new ol.Map({
+          controls: ol.control.defaults().extend([
+            new ol.control.OverviewMap(),
+            new ol.control.FullScreen()
+          ]),
+          layers: [
+            new ol.layer.Image({
+              source: new ol.source.ImageStatic({
+                attributions: [
+                  new ol.Attribution({
+                    html: '&copy; The Trustees of the British Museum'
+                  })
+                ],
+                url: task.info.url_b,
+                projection: projection,
+                imageExtent: extent
               })
-            ],
-            url: task.info.url_b,
+            })
+          ],
+          target: 'map',
+          view: new ol.View({
             projection: projection,
-            imageExtent: extent
+            center: ol.extent.getCenter(extent),
+            zoom: 1,
+            minZoom: 1,
+            maxZoom: 5
           })
-        })
-      ],
-      target: 'map',
-      view: new ol.View({
-        projection: projection,
-        center: ol.extent.getCenter(extent),
-        zoom: 1,
-        minZoom: 1,
-        maxZoom: 5
-      })
 
-    });
+        });
 
-    $('.ol-zoom-in, .ol-zoom-out').tooltip({
-        placement: 'right'
-    });
+        $('.ol-zoom-in, .ol-zoom-out').tooltip({
+            placement: 'right'
+        });
 
-    $('.ol-rotate-reset, .ol-attribution button[title]').tooltip({
-        placement: 'left'
-    });
+        $('.ol-rotate-reset, .ol-attribution button[title]').tooltip({
+            placement: 'left'
+        });
 
-    zoomslider = new ol.control.ZoomSlider();
+        zoomslider = new ol.control.ZoomSlider();
 
-    map.addControl(zoomslider);
+        map.addControl(zoomslider);
 
     }  else {
         deferred.resolve(task);
@@ -321,7 +322,7 @@ console.log(task.info);
 });
 
 pybossa.presentTask(function(task, deferred) {
-    console.log(task);
+   
     if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
         $(':input','#transcription')
