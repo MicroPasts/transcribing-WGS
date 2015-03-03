@@ -241,6 +241,7 @@ console.log(task.info);
 
     var map = new ol.Map({
       controls: ol.control.defaults().extend([
+        new ol.control.OverviewMap(),
         new ol.control.FullScreen()
       ]),
       layers: [
