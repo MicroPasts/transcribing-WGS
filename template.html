@@ -253,6 +253,7 @@ console.log(task.info);
         deferred.resolve(task);
     }
 });
+
 </script>
 
 <script>
@@ -264,13 +265,16 @@ pybossa.presentTask(function(task, deferred) {
            .val('')
            .removeAttr('checked')
            .removeAttr('selected');
-      	$(".fancybox").fancybox();
 
+      	$("a#raw").attr("href", task.info.url_b);
+        $(".fancybox").fancybox();
+        $('#imgLink').tooltip();
         $("[rel=tooltip]").tooltip();
         $("#question").html(task.info.question);
         $('#task-id').html(task.id);
         $("#map_" + task.id).show();
         $("#img_" + task.id).show();
+
         $('.btn-answer').off('click').on('click', function(evt) {
             evt.preventDefault();
             var answer = $(evt.target).attr("value");
@@ -282,20 +286,19 @@ pybossa.presentTask(function(task, deferred) {
                 } else {
                     task.answer = $("#transcription").serializeJSON();
                     console.log(task.answer);
-                }
-                    task.answer.toSearch = task.answer.toSearch.replace(/\n/g,', ');
-                    task.answer.site = task.answer.site.replace(/\r\n/g,', ');
                     console.log(task.answer);
 
                     pybossa.saveTask(task.id, task.answer).done(function() {
                         $("#map_" + task.id).hide();
                         $("#img_" + task.id).hide();
+                        //$('#img_task_' + task.id).trigger('wheelzoom.reset');
                         $("html, body").animate({ scrollTop: 0 }, "slow");
                         $("#success").fadeIn(500).fadeOut(5500);
                         $("#loading").fadeIn(500).fadeOut(1000);
                         deferred.resolve();
                     });
                     $("#loading").fadeIn(500);
+
                 }
             } else {
                 console.log(answer);
