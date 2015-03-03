@@ -34,8 +34,7 @@
             <span id="total" class="label label-inverse"></span></p>
 
         <div class="progress progress-striped">
-            <div id="progress" class="progress-bar" role="progressbar" rel="tooltip" title="#" class="bar"
-                 style="width: 0%;"></div>
+            <div id="progress" class="progress-bar" role="progressbar" rel="tooltip" title="#" class="bar" style="width: 0%;"></div>
         </div>
 
 
@@ -214,9 +213,9 @@
     $("#modal").modal('show');
 </script>
 <script>
-
 function loadUserProgress() {
         pybossa.userProgress('wgs').done(function(data){
+            console.log(data);
             console.log("Total answers done for user: " + data.done);
             if ((data.done == 1) && ($.cookie('surveyWGS') == undefined)){
                $("#survey").modal('show');
@@ -295,6 +294,7 @@ console.log(task.info);
       setTimeout( function() {
       map.updateSize();
       }, 200);
+      console.log('Window resized');
     }
 
     }  else {
