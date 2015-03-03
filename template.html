@@ -227,10 +227,10 @@ var map = new ol.Map({
       source: new ol.source.ImageStatic({
         attributions: [
           new ol.Attribution({
-            html: '&copy; <a href="http://xkcd.com/license.html">xkcd</a>'
+            html: '&copy; The Trustees of the British Museum'
           })
         ],
-        url: 'http://imgs.xkcd.com/comics/online_communities.png',
+        url: task.info.url_b,
         projection: projection,
         imageExtent: extent
       })
