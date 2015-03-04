@@ -273,6 +273,7 @@ pybossa.taskLoaded(function(task, deferred) {
 
     console.log('Url for image: ' + task.info.url_b);
     if ( !$.isEmptyObject(task) ) {
+        deferred.resolve(task);
         // Map views always need a projection.  Here we just want to map image
         // coordinates directly to map coordinates, so we create a projection that uses
         // the image extent in pixels.
@@ -325,7 +326,7 @@ pybossa.taskLoaded(function(task, deferred) {
         $('.ol-rotate-reset, .ol-attribution button[title]').tooltip({
             placement: 'left'
         });
-        deferred.resolve(task);
+
     }  else {
         deferred.resolve(task);
     }
