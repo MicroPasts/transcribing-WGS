@@ -334,9 +334,9 @@ Modernizr.load({
                 var answer = $(evt.target).attr("value");
                 if (typeof answer != 'undefined') {
                     console.log(answer);
-                    var container = $('#wgsTranscribe');
-                    var htContents = JSON.stringify(container.handsontable('getData'));
-                    task.answer.tabulated = htcontent;
+                    var handsontable = $("#wgsTranscribe").data('handsontable');
+                    var answer = handsontable.getData();
+                    console.log(answer);
                     task.answer.comments = $('#comments').val();
                     console.log(task.answer);
                     pybossa.saveTask(task.id, task.answer).done(function() {
