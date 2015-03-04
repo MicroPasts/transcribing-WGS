@@ -263,7 +263,9 @@ Modernizr.load({
 
     pybossa.presentTask(function(task, deferred) {
         if ( !$.isEmptyObject(task) ) {
-                // Map views always need a projection.  Here we just want to map image
+        $("#question").html(task.info.question);
+        $('#task-id').html(task.id);
+        // Map views always need a projection.  Here we just want to map image
         // coordinates directly to map coordinates, so we create a projection that uses
         // the image extent in pixels.
         var extent = [0, 0, 4000, 6016];
