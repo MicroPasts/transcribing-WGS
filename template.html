@@ -325,6 +325,7 @@ pybossa.taskLoaded(function(task, deferred) {
         $('.ol-rotate-reset, .ol-attribution button[title]').tooltip({
             placement: 'left'
         });
+        deferred.resolve(task);
     }  else {
         deferred.resolve(task);
     }
