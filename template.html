@@ -285,6 +285,7 @@ pybossa.taskLoaded(function(task, deferred) {
 
         var map = new ol.Map({
           controls: ol.control.defaults().extend([
+            new ol.control.ZoomSlider(),
             new ol.control.FullScreen()
           ]),
           layers: [
@@ -317,13 +318,13 @@ pybossa.taskLoaded(function(task, deferred) {
             placement: 'right'
         });
 
-        $('.ol-rotate-reset, .ol-attribution button[title]').tooltip({
+        $('.ol-full-screen').tooltip({
             placement: 'left'
         });
 
-        zoomslider = new ol.control.ZoomSlider();
-        map.addControl(zoomslider);
-
+        $('.ol-rotate-reset, .ol-attribution button[title]').tooltip({
+            placement: 'left'
+        });
     }  else {
         deferred.resolve(task);
     }
