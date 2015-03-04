@@ -230,7 +230,6 @@ Modernizr.load({
 <script>
     function loadUserProgress() {
         pybossa.userProgress('wgs').done(function(data){
-            console.log(data);
             console.log("Total answers done for user: " + data.done);
             if ((data.done == 1) && ($.cookie('surveyWGS') == undefined)){
                $("#survey").modal('show');
@@ -252,7 +251,6 @@ Modernizr.load({
     pybossa.taskLoaded(function(task, deferred) {
         if ( ! $.isEmptyObject(task) ) {
             loadUserProgress();
-            deferred.resolve(task);
         } else {
             deferred.resolve(task);
         }
@@ -345,7 +343,7 @@ Modernizr.load({
                     var data = handsontable.getData();
                     console.log(data);
                     task.answer.data = data;
-                    task.answer.comments =  $("#comments").serializeJSON();
+                    task.answer.comments =  $("#comments").val();
                     console.log(task.answer);
                     pybossa.saveTask(task.id, task.answer).done(function() {
                         $("html, body").animate({ scrollTop: 0 }, "slow");
