@@ -117,7 +117,7 @@
     It uses the class="skeleton" to identify the elements that belong to the
     task.
 -->
-<div class="row skeleton">
+<div class="row skeleton" id="transcription">
     <!-- The image map column -->
     <div class="row">
         <div id="map"></div>
@@ -333,13 +333,18 @@ Modernizr.load({
                 stretchH: 'all'
                 };
                 $("#wgsTranscribe").handsontable(config);
+
+
                 $('.btn-answer').off('click').on('click', function(evt) {
+                evt.preventDefault();
                 var answer = $(evt.target).attr("value");
                 if (typeof answer != 'undefined') {
-                    console.log(answer);
+                    task.answer = $("#transcription").serializeJSON();
+                    console.log(task.answer);
                     var handsontable = $("#wgsTranscribe").data('handsontable');
                     var data = handsontable.getData();
                     console.log(data);
+                    task.answer.data = data;
                     task.answer.comments =  $("#comments").serializeJSON();
                     console.log(task.answer);
                     pybossa.saveTask(task.id, task.answer).done(function() {
