@@ -349,6 +349,7 @@ Modernizr.load({
                         $("html, body").animate({ scrollTop: 0 }, "slow");
                         $("#success").fadeIn(500).fadeOut(500);
                         $("#loading").fadeIn(500).fadeOut(500);
+                        map.setTarget(null);
                         deferred.resolve();
                     });
                 } else {
