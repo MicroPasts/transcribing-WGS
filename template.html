@@ -273,8 +273,18 @@ pybossa.taskLoaded(function(task, deferred) {
 
     console.log('Url for image: ' + task.info.url_b);
     if ( !$.isEmptyObject(task) ) {
+               deferred.resolve(task);
+    }  else {
         deferred.resolve(task);
-        // Map views always need a projection.  Here we just want to map image
+    }
+});
+</script>
+
+<script type="text/javascript">
+pybossa.presentTask(function(task, deferred) {
+    console.log(task);
+    if ( !$.isEmptyObject(task) ) {
+         // Map views always need a projection.  Here we just want to map image
         // coordinates directly to map coordinates, so we create a projection that uses
         // the image extent in pixels.
         var extent = [0, 0, 4000, 6016];
@@ -326,17 +336,6 @@ pybossa.taskLoaded(function(task, deferred) {
         $('.ol-rotate-reset, .ol-attribution button[title]').tooltip({
             placement: 'left'
         });
-
-    }  else {
-        deferred.resolve(task);
-    }
-});
-</script>
-
-<script type="text/javascript">
-pybossa.presentTask(function(task, deferred) {
-    console.log(task);
-    if ( !$.isEmptyObject(task) ) {
         loadUserProgress();
         $(':input','#transcription')
            .not(':button, :submit, :reset, :hidden, :radio')
