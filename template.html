@@ -281,9 +281,7 @@ pybossa.taskLoaded(function(task, deferred) {
 </script>
 
 <script type="text/javascript">
-pybossa.presentTask(function(task, deferred) {
-    console.log(task);
-    if ( !$.isEmptyObject(task) ) {
+    function loadMap(url) {
          // Map views always need a projection.  Here we just want to map image
         // coordinates directly to map coordinates, so we create a projection that uses
         // the image extent in pixels.
@@ -307,7 +305,7 @@ pybossa.presentTask(function(task, deferred) {
                     html: '&copy; The Trustees of the British Museum'
                   })
                 ],
-                url: task.info.url_b,
+                url: url,
                 projection: projection,
                 imageExtent: extent
               })
@@ -336,7 +334,16 @@ pybossa.presentTask(function(task, deferred) {
         $('.ol-rotate-reset, .ol-attribution button[title]').tooltip({
             placement: 'left'
         });
+    }
+</script>
+
+<script type="text/javascript">
+pybossa.presentTask(function(task, deferred) {
+    console.log(task);
+    if ( !$.isEmptyObject(task) ) {
+        loadMap(task.info.url_b);
         loadUserProgress();
+
         $(':input','#transcription')
            .not(':button, :submit, :reset, :hidden, :radio')
            .val('')
