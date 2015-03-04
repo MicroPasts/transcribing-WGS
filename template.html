@@ -335,7 +335,7 @@ Modernizr.load({
                 if (typeof answer != 'undefined') {
                     console.log(answer);
 
-                    var handsontable = $("#data-table").data('handsontable');
+                    var handsontable = $("#wgsTranscribe").data('handsontable');
                     var tableData = handsontable.getData();
                     task.answer.tabular = tableData;
                     console.log(task.answer);
@@ -358,13 +358,6 @@ Modernizr.load({
     });
     pybossa.run('wgs');
     </script>
-
-<script type="text/javascript">
-    function loadMap(url) {
-
-    }
-</script>
-
 
 <style type="text/css">
     #map {
