@@ -43,7 +43,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Congrats for completing 25 tasks!</h4>
+                <h4 class="modal-title">Congratulations for completing 25 tasks!</h4>
             </div>
             <div class="modal-body">
                 Thanks for contributing 25 tasks for the project. Now that you have been using MicroPasts for a while,
@@ -87,12 +87,17 @@
         <strong>The task has been completed!</strong> Thanks a lot!
     </div>
     <div id="finish" class="alert alert-success" style="display:none;">
-        <strong>Congratulations!</strong> You have participated in all available tasks!
-        <br/>
-        <div class="alert-actions">
-            <a class="btn-sm" href="/">Go back</a>
-            <a class="btn-sm" href="/app">or, Check other applications</a>
-        </div>
+        <h2>Congratulations!</h2>
+          <p>
+              You have participated in all available tasks!
+          </p>
+          <img src="https://crowdfunded.micropasts.org/assets/logo-head.png"
+               height="200" width="200" alt="The MicroPasts Square Logo"/>
+          <div class="alert-actions">
+             <a class="btn-default btn" href="/">Go back to the home page</a>
+             <a class="btn-default btn" href="/app">or, have a look at our
+                 other applications</a>
+          </div>
     </div>
     <div id="error" class="alert alert-error" style="display:none;">
         <a class="close">×</a>
@@ -165,15 +170,48 @@
 
                 <p>Each entry in the note book is similar, 7 fields:</p>
                 <ol>
-                    <li></li>
+                    <li>Entry number</li>
+                    <li>Date of discovery</li>
+                    <li>Description of the discovery</li>
+                    <li>Length in inches</li>
+                    <li>Width in inches</li>
+                    <li>Weight in pounds</li>
+                    <li>Weight in ounces</li>
                 </ol>
             </div>
 
             <!-- Step 2 of the tutorial -->
             <div id="1" class="modal-body" style="display:none">
-                <!-- Insert content for step 2 -->
+                <p>
+                    The image that we would like you to transcribe for us, starts at the top of the page and can be scrolled
+                    up and down, and zoomed in and out to read more of the contents. We hope that this interface allows you to
+                    work on the image concurrently with the text table below the image container.
+                </p>
+
+                <p>
+                    The table starts off with just 6 rows but will add another automatically when you get to the bottom, up
+                    to a maximum of 20 rows.
+                </p>
+
+                <p>
+                    The image is contained within an interface that allows you to zoom in and out, and even go full screen.
+                    Try the controls out, you won't break anything!
+                </p>
             </div>
 
+            <!-- Step 2 of the tutorial -->
+            <div id="2" class="modal-body" style="display:none">
+                <p>
+                    As in the Bronze Age index transcription applications, some abbreviations are used. If you see the sign in the image below, it means 'ditto'.
+                    So please enter the same as the previous line's entry.
+                </p>
+                <img src="http://micropasts.org/wp-content/uploads/2015/03/MicroPasts-·-Project-Transcribing-the-Worthington-George-Smith-catalogue-·-Contribute.png">
+                <p>
+                    As this is an antiquarian notebook, the measurements are not metric and are in imperial measures. When transcribing, do not
+                    attempt to convert the weights or dimensions. Instead please just enter as seen. If you see 3 1/4, then please enter as such.
+                    The project team will do the conversions.
+                </p>
+            </div>
             <!-- End of stepped modal body -->
 
             <!-- Modal footer -->
@@ -332,7 +370,7 @@ Modernizr.load({
                 autoWrapCol: true,
                 autoColumnSize: true,
                 colHeaders: ['ID', 'Date', 'Description', 'Length (in inches)', 'Width (in inches)', 'Weight (in pounds.)', 'Weight (in ounces)'],
-                contextMenu: ['row_above', 'row_below', 'remove_row', 'undo', 'redo'],
+                contextMenu: ['row_below', 'remove_row', 'undo', 'redo'],
                 stretchH: 'all'
                 };
                 $("#wgsTranscribe").handsontable(config);
