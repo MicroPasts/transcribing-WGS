@@ -385,9 +385,13 @@ Modernizr.load({
                     var handsontable = $("#wgsTranscribe").data('handsontable');
                     var data = handsontable.getData();
                     console.log(data);
-                    var json = JSON.stringify(data);
-                    console.log(json);
-                    task.answer = json;
+                    var arrayLength = data.length;
+                    var clean = array();
+                    for (var i = 0; i < arrayLength; i++) {
+                        clean[] = data[i].toString();
+                    }
+
+                    task.answer = clean;
                     task.answer.comments =  $("#comments").val();
                     console.log(task.answer);
                     pybossa.saveTask(task.id, task.answer).done(function() {
