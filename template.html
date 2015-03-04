@@ -119,13 +119,13 @@
     </div>
 
         <!-- The image map column -->
-        <div class="col-md-6">
+        <div class="row">
             <div id="map"></div>
         </div>
         <!-- End of image map column -->
 
         <!-- The transcribe section using html table -->
-        <div class="col-md-6">
+        <div class="row">
             <h4>Transcribe the catalogue into this table</h4>
             <div id="wgsTranscribe" class="handsontable"></div>
 
@@ -236,13 +236,12 @@ $(document).ready(function () {
     autoWrapRow: true,
     autoWrapCol: true,
     autoColumnSize: true,
-    colHeaders: ['ID', 'Date', 'Description', 'Length', 'Width', 'Lbs', 'Oz'],
+    colHeaders: ['ID', 'Date', 'Description', 'Length', 'Width', 'Weight Lbs.', 'Weight Oz.'],
     contextMenu: true,
-    colWidths: [50, 75, 150, 50, 50, 50, 50]
+
     };
     $("#wgsTranscribe").handsontable(config);
 });
-
 </script>
 
 <script type="text/javascript">
@@ -272,7 +271,6 @@ pybossa.taskLoaded(function(task, deferred) {
 
     console.log('Url for image: ' + task.info.url_b);
     if ( !$.isEmptyObject(task) ) {
-
         // Map views always need a projection.  Here we just want to map image
         // coordinates directly to map coordinates, so we create a projection that uses
         // the image extent in pixels.
@@ -322,7 +320,6 @@ pybossa.taskLoaded(function(task, deferred) {
         });
 
         zoomslider = new ol.control.ZoomSlider();
-
         map.addControl(zoomslider);
 
     }  else {
@@ -396,24 +393,24 @@ else {
 <style type="text/css">
     #map {
     background-color: black;
-    height: 500px;
+        height: 500px;
     }
     #map:-moz-full-screen {
-    height: 100%;
+        height: 100%;
     }
     #map:-webkit-full-screen {
-    height: 100%;
+        height: 100%;
     }
     #map:-ms-fullscreen {
-    height: 100%;
+        height: 100%;
     }
     #map:full-screen {
-    height: 100%;
+        height: 100%;
     }
     .ol-rotate {
-    top: 3em;
+        top: 3em;
     }
     #wgsTranscribe {
-    min-width: 500px;
+        min-width: 500px;
     }
 </style>
