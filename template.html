@@ -304,7 +304,8 @@ pybossa.taskLoaded(function(task, deferred) {
           target: 'map',
           view: new ol.View({
             projection: projection,
-            center: ol.extent.getCenter(extent),
+            center: new ol.Coordinate(2000, 6016),
+            //ol.extent.getCenter(extent),
             zoom: 1,
             minZoom: 1,
             maxZoom: 5
