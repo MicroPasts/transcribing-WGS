@@ -283,7 +283,6 @@ pybossa.taskLoaded(function(task, deferred) {
 
         var map = new ol.Map({
           controls: ol.control.defaults().extend([
-            new ol.control.OverviewMap(),
             new ol.control.FullScreen()
           ]),
           layers: [
@@ -393,7 +392,7 @@ else {
 <style type="text/css">
     #map {
         background-color: black;
-        height: 500px;
+        height: 300px;
     }
     #map:-moz-full-screen {
         height: 100%;
@@ -411,6 +410,6 @@ else {
         top: 3em;
     }
     #wgsTranscribe {
-        min-width: 500px;
+        width: 100%;
     }
 </style>
