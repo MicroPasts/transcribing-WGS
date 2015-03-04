@@ -248,6 +248,7 @@ $(document).ready(function () {
 
 <script type="text/javascript">
 function loadUserProgress() {
+    console.log(data);
         pybossa.userProgress('wgs').done(function(data){
             console.log("Total answers done for user: " + data.done);
             if ((data.done == 1) && ($.cookie('surveyWGS') == undefined)){
@@ -273,7 +274,7 @@ pybossa.taskLoaded(function(task, deferred) {
 
     console.log('Url for image: ' + task.info.url_b);
     if ( !$.isEmptyObject(task) ) {
-               deferred.resolve(task);
+        deferred.resolve(task);
     }  else {
         deferred.resolve(task);
     }
@@ -339,9 +340,10 @@ pybossa.taskLoaded(function(task, deferred) {
 
 <script type="text/javascript">
 pybossa.presentTask(function(task, deferred) {
-    console.log(task);
     if ( !$.isEmptyObject(task) ) {
+
         loadMap(task.info.url_b);
+
         loadUserProgress();
 
         $(':input','#transcription')
@@ -353,7 +355,6 @@ pybossa.presentTask(function(task, deferred) {
         $("#question").html(task.info.question);
         $('#task-id').html(task.id);
         $("#map_" + task.id).show();
-        $("#img_" + task.id).show();
 
         $('.btn-answer').off('click').on('click', function(evt) {
             var answer = $(this).attr("value");
@@ -370,8 +371,6 @@ pybossa.presentTask(function(task, deferred) {
             else {
                 $("#error").show();
             }
-
-
         });
         $("#loading").hide();
     }
@@ -381,13 +380,9 @@ pybossa.presentTask(function(task, deferred) {
         $("#finish").fadeIn(500);
     }
 });
-if(Modernizr.borderradius) {
+
     pybossa.run('wgs');
-}
-else {
-    $(".skeleton").hide();
-    $("#oldbrowser").show();
-}
+
 </script>
 
 <style type="text/css">
