@@ -101,15 +101,8 @@
 </div>
 <!-- End Success and Error Messages for the user -->
 
-
-<!--
-    Task DOM for loading the S3 Images
-    It uses the class="skeleton" to identify the elements that belong to the
-    task.
--->
-<div class="row skeleton">
-
-    <div class="btn-group pull-right">
+<div class="row">
+       <div class="btn-group pull-right">
         <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal"><i
                 class="glyphicon glyphicon-eye-open"></i> Tutorial
         </button>
@@ -117,7 +110,14 @@
            title="Opens in a new window" href="http://community.micropasts.org/category/crowdsourcing-support"><i
                 class="glyphicon glyphicon-book"></i> Community Help</a>
     </div>
+</div>
 
+<!--
+    Task DOM for loading the S3 Images
+    It uses the class="skeleton" to identify the elements that belong to the
+    task.
+-->
+<div class="row skeleton">
         <!-- The image map column -->
         <div class="row">
             <div id="map"></div>
@@ -392,9 +392,8 @@ else {
 
 <style type="text/css">
     #map {
-    background-color: black;
-        max-height: 500px;
-        min-height: 300px;
+        background-color: black;
+        height: 500px;
     }
     #map:-moz-full-screen {
         height: 100%;
