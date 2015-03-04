@@ -343,7 +343,7 @@ Modernizr.load({
                     var handsontable = $("#wgsTranscribe").data('handsontable');
                     var data = handsontable.getData();
                     console.log(data);
-                    task.answer.data = data;
+                    task.answer =  data;
                     task.answer.comments =  $("#comments").val();
                     console.log(task.answer);
                     pybossa.saveTask(task.id, task.answer).done(function() {
