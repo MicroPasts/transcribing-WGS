@@ -251,14 +251,9 @@ Modernizr.load({
     pybossa.taskLoaded(function(task, deferred) {
         if ( ! $.isEmptyObject(task) ) {
             loadUserProgress();
-            // load image from flickr
-            var map = loadMap(task.info.url_b);
-            map.load(function() {
-                // continue as soon as the image is loaded
-                deferred.resolve(task);
-            });
-        }
-        else {
+            loadMap(task.info.url_b);
+            deferred.resolve(task);
+        } else {
             deferred.resolve(task);
         }
     });
