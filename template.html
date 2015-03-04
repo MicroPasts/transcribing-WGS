@@ -239,7 +239,7 @@ $(document).ready(function () {
     autoWrapCol: true,
     autoColumnSize: true,
     colHeaders: ['ID', 'Date', 'Description', 'Length', 'Width', 'Weight Lbs.', 'Weight Oz.'],
-    contextMenu: true,
+    contextMenu: ['row_above', 'row_below', 'remove_row', 'undo', 'redo'],
     stretchH: 'all'
     };
     $("#wgsTranscribe").handsontable(config);
