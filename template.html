@@ -334,23 +334,10 @@ Modernizr.load({
                 var answer = $(evt.target).attr("value");
                 if (typeof answer != 'undefined') {
                     console.log(answer);
-                    task.answer = $("#phototagging").serializeJSON();
-                    task.answer.annotations = anno.getAnnotations();
-                    task.answer.theme = $('#theme').val();
-                    task.answer.people = $('#people').val();
-                    task.answer.things = $('#things').val();
-                    task.answer.activities = $('#activities').val();
-                    var geojson = {
-                       "geometry": {
-                            "type": "Point",
-                            "coordinates": [
-                                        $('#lon').val(),
-                                        $('#lat').val()
-                                ]
-                        }
-                    };
-                    console.log(geojson);
-                    task.answer.geojson = geojson;
+
+                    var handsontable = $("#data-table").data('handsontable');
+                    var tableData = handsontable.getData();
+                    task.answer.tabular = tableData;
                     console.log(task.answer);
                     pybossa.saveTask(task.id, task.answer).done(function() {
                         $("html, body").animate({ scrollTop: 0 }, "slow");
