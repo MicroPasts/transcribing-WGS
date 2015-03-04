@@ -230,6 +230,7 @@ Modernizr.load({
 <script>
     function loadUserProgress() {
         pybossa.userProgress('wgs').done(function(data){
+            console.log(data);
             console.log("Total answers done for user: " + data.done);
             if ((data.done == 1) && ($.cookie('surveyWGS') == undefined)){
                $("#survey").modal('show');
@@ -327,7 +328,7 @@ Modernizr.load({
                 autoWrapRow: true,
                 autoWrapCol: true,
                 autoColumnSize: true,
-                colHeaders: ['ID', 'Date', 'Description', 'Length', 'Width', 'Weight Lbs.', 'Weight Oz.'],
+                colHeaders: ['ID', 'Date', 'Description', 'Length (in inches)', 'Width (in inches)', 'Weight (in Lbs.)', 'Weight (in Oz.)'],
                 contextMenu: ['row_above', 'row_below', 'remove_row', 'undo', 'redo'],
                 stretchH: 'all'
                 };
