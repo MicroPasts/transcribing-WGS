@@ -224,31 +224,11 @@ Modernizr.load({
     $("#modal").modal('show');
 </script>
 
-<!-- Create the table -->
-<script type="text/javascript">
-$(document).ready(function () {
-    var data = [[]];
-    var config = {
-    data: data,
-    minRows: 6,
-    minCols: 7,
-    minSpareRows: 1,
-    minSpareCols: 0,
-    maxRows: 20,
-    autoWrapRow: true,
-    autoWrapCol: true,
-    autoColumnSize: true,
-    colHeaders: ['ID', 'Date', 'Description', 'Length', 'Width', 'Weight Lbs.', 'Weight Oz.'],
-    contextMenu: ['row_above', 'row_below', 'remove_row', 'undo', 'redo'],
-    stretchH: 'all'
-    };
-    $("#wgsTranscribe").handsontable(config);
-});
-</script>
 
-<script type="text/javascript">
-function loadUserProgress() {
-    console.log(data);
+
+<!-- Load user progress -->
+    <script>
+    function loadUserProgress() {
         pybossa.userProgress('wgs').done(function(data){
             console.log("Total answers done for user: " + data.done);
             if ((data.done == 1) && ($.cookie('surveyWGS') == undefined)){
@@ -265,21 +245,86 @@ function loadUserProgress() {
             $("#progress").tooltip({'placement': 'left'});
             $("#total").text(data.total);
             $("#done").text(data.done);
+            $('a[rel]').tooltip({'placement': 'left'});
         });
     }
-</script>
+    pybossa.taskLoaded(function(task, deferred) {
+        if ( ! $.isEmptyObject(task) ) {
+            loadUserProgress();
+            // load image from flickr
+            var map = loadMap(task.info.url_b);
+            map.load(function() {
+                // continue as soon as the image is loaded
+                deferred.resolve(task);
+            });
+        }
+        else {
+            deferred.resolve(task);
+        }
+    });
+      $(window).resize(function(){
+        console.log('Window resized');
+      });
 
-<script type="text/javascript">
-pybossa.taskLoaded(function(task, deferred) {
-
-    console.log('Url for image: ' + task.info.url_b);
-    if ( !$.isEmptyObject(task) ) {
-        deferred.resolve(task);
-    }  else {
-        deferred.resolve(task);
-    }
-});
-</script>
+    pybossa.presentTask(function(task, deferred) {
+        if ( !$.isEmptyObject(task) ) {
+                var data = [[]];
+                var config = {
+                data: data,
+                minRows: 6,
+                minCols: 7,
+                minSpareRows: 1,
+                minSpareCols: 0,
+                maxRows: 20,
+                autoWrapRow: true,
+                autoWrapCol: true,
+                autoColumnSize: true,
+                colHeaders: ['ID', 'Date', 'Description', 'Length', 'Width', 'Weight Lbs.', 'Weight Oz.'],
+                contextMenu: ['row_above', 'row_below', 'remove_row', 'undo', 'redo'],
+                stretchH: 'all'
+                };
+                $("#wgsTranscribe").handsontable(config);
+                $('.btn-answer').off('click').on('click', function(evt) {
+                var answer = $(evt.target).attr("value");
+                if (typeof answer != 'undefined') {
+                    console.log(answer);
+                    task.answer = $("#phototagging").serializeJSON();
+                    task.answer.annotations = anno.getAnnotations();
+                    task.answer.theme = $('#theme').val();
+                    task.answer.people = $('#people').val();
+                    task.answer.things = $('#things').val();
+                    task.answer.activities = $('#activities').val();
+                    var geojson = {
+                       "geometry": {
+                            "type": "Point",
+                            "coordinates": [
+                                        $('#lon').val(),
+                                        $('#lat').val()
+                                ]
+                        }
+                    };
+                    console.log(geojson);
+                    task.answer.geojson = geojson;
+                    console.log(task.answer);
+                    pybossa.saveTask(task.id, task.answer).done(function() {
+                        $("html, body").animate({ scrollTop: 0 }, "slow");
+                        $("#success").fadeIn(500).fadeOut(500);
+                        $("#loading").fadeIn(500).fadeOut(500);
+                        deferred.resolve();
+                    });
+                } else {
+                    $("#error").show();
+                }
+            });
+            $("#loading").hide();
+        } else {
+            $(".skeleton").hide();
+            $("#loading").hide();
+            $("#finish").fadeIn(500);
+        }
+    });
+    pybossa.run('wgs');
+    </script>
 
 <script type="text/javascript">
     function loadMap(url) {
@@ -338,52 +383,6 @@ pybossa.taskLoaded(function(task, deferred) {
     }
 </script>
 
-<script type="text/javascript">
-pybossa.presentTask(function(task, deferred) {
-    if ( !$.isEmptyObject(task) ) {
-
-        loadMap(task.info.url_b);
-
-        loadUserProgress();
-
-        $(':input','#transcription')
-           .not(':button, :submit, :reset, :hidden, :radio')
-           .val('')
-           .removeAttr('checked')
-           .removeAttr('selected');
-
-        $("#question").html(task.info.question);
-        $('#task-id').html(task.id);
-        $("#map_" + task.id).show();
-
-        $('.btn-answer').off('click').on('click', function(evt) {
-            var answer = $(this).attr("value");
-            if (typeof answer != 'undefined') {
-                task.answer = $("#comments").serializeJSON();
-                var handsontable = $("#wgsTranscribe").data('handsontable');
-                var data = handsontable.getData();
-                answer.contents = data;
-                pybossa.saveTask(task.id, answer).done(function() {
-                    deferred.resolve();
-                });
-                $("#loading").fadeIn(500);
-            }
-            else {
-                $("#error").show();
-            }
-        });
-        $("#loading").hide();
-    }
-    else {
-        $(".skeleton").hide();
-        $("#loading").hide();
-        $("#finish").fadeIn(500);
-    }
-});
-
-    pybossa.run('wgs');
-
-</script>
 
 <style type="text/css">
     #map {
