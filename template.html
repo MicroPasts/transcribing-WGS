@@ -6,8 +6,6 @@
 <script src="/static/js/vendor/jquery.serializeJSON.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js" type="text/javascript"></script>
 <script src="/static/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.js" type="text/javascipt"></script>
-<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image-ios.js" type="text/javascipt"></script>
 
 <!-- Add style sheets -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.2.1/ol.css" type="text/css">
@@ -322,11 +320,6 @@ Modernizr.load({
           extent: extent
         });
         var img = task.info.url_b;
-
-        var scaledImage = loadImage.scale(
-            img, // img or canvas element
-            {maxWidth: 600}
-        );
 
         var map = new ol.Map({
           controls: ol.control.defaults().extend([
