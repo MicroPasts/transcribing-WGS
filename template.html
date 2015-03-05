@@ -6,6 +6,7 @@
 <script src="/static/js/vendor/jquery.serializeJSON.min.js" type="text/javascript"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js" type="text/javascript"></script>
 <script src="/static/vendor/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image.js" type="text/javascipt"></script>
 <script src="https://blueimp.github.io/JavaScript-Load-Image/js/load-image-ios.js" type="text/javascipt"></script>
 
 <!-- Add style sheets -->
@@ -308,7 +309,7 @@ Modernizr.load({
         $("a#overlay").attr("href", task.info.url_b);
         $("a#download").attr("download", task.id);
         $("a#download").attr("href", task.info.url_b );
-        $('a[rel]').tooltip({'placement': 'top'});
+        $('#support').tooltip({'placement': 'top'});
         $(".fancybox").fancybox();
 
         // Map views always need a projection.  Here we just want to map image
