@@ -3,8 +3,7 @@
         <div class="modal-content">
             <!-- Modal header -->
             <div class="modal-header">
-                <h3>Transcribing the Worthington George Smith manuscripts</h3>
-
+                <h3>Transcribing the Worthington Smith notebooks</h3>
             </div>
 
             <!-- Step 1 of the tutorial -->
@@ -12,8 +11,8 @@
                 <p>This application is very simple and is a transcription based exercise. Our team would like you to
                 write down exactly what you see on each line of the notepad into the table displayed below the zooming image.</p>
 
-                <p>Each entry in the note book is similar, 7 fields:</p>
-                <ol>
+                <p>Each entry in the note book is similar, presenting as 7 columns within the rows:</p>
+                <ul>
                     <li>Entry number</li>
                     <li>Date of discovery</li>
                     <li>Description of the discovery</li>
@@ -21,7 +20,8 @@
                     <li>Width in inches</li>
                     <li>Weight in pounds</li>
                     <li>Weight in ounces</li>
-                </ol>
+                </ul>
+                <p>You only need to transcribe these values, and not the column headers.</p>
             </div>
 
             <!-- Step 2 of the tutorial -->
@@ -46,10 +46,13 @@
             <!-- Step 2 of the tutorial -->
             <div id="2" class="modal-body" style="display:none">
                 <p>
-                    As in the Bronze Age index transcription applications, some abbreviations are used. If you see the sign in the image below, it means 'ditto'.
-                    So please enter the same as the previous line's entry.
+                    As in the Bronze Age index transcription applications, some abbreviations are used. If you see the
+                    sign in the image below, it means 'ditto'. So please enter the same as the previous line's entry.
                 </p>
                 <img src="http://micropasts.org/wp-content/uploads/2015/03/MicroPasts-·-Project-Transcribing-the-Worthington-George-Smith-catalogue-·-Contribute.png">
+                <p>If you see the text (or similar):</p>
+                <blockquote>same as last</blockquote>
+                <p>Please enter the same entry for that field as shown in the line above.</p>
                 <p>
                     As this is an antiquarian notebook, the measurements are not metric and are in imperial measures. When transcribing, do not
                     attempt to convert the weights or dimensions. Instead please just enter as seen. If you see 3 1/4, then please enter as such.
@@ -62,7 +65,7 @@
             <div class="modal-footer">
                 <a id="prevBtn" href="#" onclick="showStep('prev')" class="btn btn-default">Previous</a>
                 <a id="nextBtn" href="#" onclick="showStep('next')" class="btn btn-success">Next</a>
-                <button id="startContrib" data-dismiss="modal" class="btn btn-primary" style="display:none"/>
+                <button id="startContrib" data-dismiss="modal" class="btn btn-primary" style="display:none"/></a>
                 <i class="glyphicon glyphicon-thumbs-up"></i> Let's start!</a>
             </div>
         </div>

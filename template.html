@@ -136,6 +136,10 @@
     <div class="row">
         <h4>Transcribe the catalogue into this table</h4>
         <div id="wgsTranscribe" class="handsontable"></div>
+        <div class="form-group">
+            <label class="control-label" for="comments">Transcriber's Comments</label>
+            <textarea class="form-control" rows="5"  name="other" placeholder="Add any comments you have"></textarea>
+        </div>
         <button class="btn btn-success btn-answer" value='Yes'>Submit the transcription</button>
         <!-- Feedback items for the user -->
         <p>You are working now on task: <span id="task-id" class="label label-warning">#</span></p>
@@ -394,6 +398,7 @@ Modernizr.load({
                     var data = handsontable.getData();
                     console.log(data);
                     task.answer = data;
+                    task.answer.comments = $("#comments").val();
                     console.log(task.answer);
                     pybossa.saveTask(task.id, task.answer).done(function() {
                         $("html, body").animate({ scrollTop: 0 }, "slow");
