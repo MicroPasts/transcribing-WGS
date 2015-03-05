@@ -297,8 +297,6 @@ Modernizr.load({
     }
     pybossa.taskLoaded(function(task, deferred) {
         if ( ! $.isEmptyObject(task) ) {
-
-            $("#comments").val('');
             deferred.resolve(task);
         } else {
             deferred.resolve(task);
@@ -388,8 +386,6 @@ Modernizr.load({
                 stretchH: 'all'
                 };
                 $("#wgsTranscribe").handsontable(config);
-
-
                 $('.btn-answer').off('click').on('click', function(evt) {
                 evt.preventDefault();
                 var answer = $(evt.target).attr("value");
@@ -409,6 +405,7 @@ Modernizr.load({
                         map.setTarget(null);
                         deferred.resolve();
                     });
+                    $('input').val('');
                 } else {
                     $("#error").show();
                 }
