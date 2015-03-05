@@ -128,8 +128,8 @@
             <a class="btn btn-info btn-xs" id="support" target="_blank" data-toggle="tooltip" data-placement="top"
                title="Opens in a new window" href="http://community.micropasts.org/category/crowd-sourcing-support"><i
                     class="glyphicon glyphicon-book"></i> Community Help</a>
-            <a class="btn btn-info btn-xs fancybox" id="overlay" title="View image overlay" ><i class="glyphicon glyphicon-picture"></i> View an overlay image</a>
-            <a class="btn btn-info btn-xs" id="download" title="Download the image"> Download the image</a>
+            <a class="btn btn-info btn-xs fancybox" id="overlay" title="View image overlay" href=""><i class="glyphicon glyphicon-picture"></i> View an overlay image</a>
+            <a class="btn btn-info btn-xs" id="download" title="Download the image" download=""><i class="glyphicon glyphicon-download"></i> Download the image</a>
         </div>
     </div>
     <!-- The transcribe section using html table -->
@@ -307,6 +307,7 @@ Modernizr.load({
         $("a#overlay").attr("href", task.info.url_b);
         $("a#download").attr("download", task.id);
         $("a#download").attr("href", task.info.url_b );
+        $('a[rel]').tooltip({'placement': 'top'});
         $(".fancybox").fancybox();
         // Map views always need a projection.  Here we just want to map image
         // coordinates directly to map coordinates, so we create a projection that uses
