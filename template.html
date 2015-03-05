@@ -297,7 +297,8 @@ Modernizr.load({
     }
     pybossa.taskLoaded(function(task, deferred) {
         if ( ! $.isEmptyObject(task) ) {
-            loadUserProgress();
+
+            $("#comments").val('');
             deferred.resolve(task);
         } else {
             deferred.resolve(task);
@@ -309,7 +310,7 @@ Modernizr.load({
 
     pybossa.presentTask(function(task, deferred) {
         if ( !$.isEmptyObject(task) ) {
-        $("#comments").val('');
+        loadUserProgress();
         $("#question").html(task.info.question);
         $('#task-id').html(task.id);
         $("a#overlay").attr("href", task.info.url_b);
