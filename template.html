@@ -114,7 +114,7 @@
     It uses the class="skeleton" to identify the elements that belong to the
     task.
 -->
-<div class="row skeleton" id="transcription">
+<div class="row skeleton">
     <!-- The image map column -->
     <div class="row">
         <div id="map"></div>
@@ -133,7 +133,7 @@
         </div>
     </div>
     <!-- The transcribe section using html table -->
-    <div class="row">
+    <div class="row" id="transcription">
         <h4>Transcribe the catalogue into this table</h4>
         <div id="wgsTranscribe" class="handsontable"></div>
         <div class="form-group">
@@ -297,6 +297,7 @@ Modernizr.load({
     }
     pybossa.taskLoaded(function(task, deferred) {
         if ( ! $.isEmptyObject(task) ) {
+            loadUserProgress();
             deferred.resolve(task);
         } else {
             deferred.resolve(task);
@@ -308,7 +309,6 @@ Modernizr.load({
 
     pybossa.presentTask(function(task, deferred) {
         if ( !$.isEmptyObject(task) ) {
-        loadUserProgress();
         $("#question").html(task.info.question);
         $('#task-id').html(task.id);
         $("a#overlay").attr("href", task.info.url_b);
@@ -395,7 +395,7 @@ Modernizr.load({
                     var handsontable = $("#wgsTranscribe").data('handsontable');
                     var data = handsontable.getData();
                     console.log(data);
-                    task.answer = data;
+                    task.answer.transcription = data;
                     task.answer.comments = $("#comments").val();
                     console.log(task.answer);
                     pybossa.saveTask(task.id, task.answer).done(function() {
