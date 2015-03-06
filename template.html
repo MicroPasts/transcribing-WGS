@@ -297,6 +297,7 @@ Modernizr.load({
     pybossa.taskLoaded(function(task, deferred) {
         if ( ! $.isEmptyObject(task) ) {
             loadUserProgress();
+            console.log("User progress");
             deferred.resolve(task);
         } else {
             deferred.resolve(task);
@@ -319,7 +320,7 @@ Modernizr.load({
         // Map views always need a projection.  Here we just want to map image
         // coordinates directly to map coordinates, so we create a projection that uses
         // the image extent in pixels.
-        var extent = [0, 0, 2000, 3008];
+        var extent = [0, 0, 4000, 6016];
         var projection = new ol.proj.Projection({
           code: '',
           units: 'pixels',
@@ -349,7 +350,7 @@ Modernizr.load({
           target: 'map',
           view: new ol.View({
             projection: projection,
-            center: [850, 2508],
+            center: [1700, 5016],
             //ol.extent.getCenter(extent),
             zoom: 3,
             minZoom: 3,
