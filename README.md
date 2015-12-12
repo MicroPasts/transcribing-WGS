@@ -1,6 +1,8 @@
 Pybossa transcription application for the WGS catalogue
 =======================================================
 
+[![DOI](https://zenodo.org/badge/19055/MicroPasts/transcribing-WGS.svg)](https://zenodo.org/badge/latestdoi/19055/MicroPasts/transcribing-WGS)
+
 Transcription application for the Worthington George Smith Catalogue.
 
 This application will allow for the transcription of around 300 pages from a catalogue of lithic discoveries created by
